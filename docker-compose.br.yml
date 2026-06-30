@@ -1,0 +1,110 @@
+version: "3.9"
+
+name: project-nomad-br
+
+services:
+  admin:
+    image: ghcr.io/crosstalk-solutions/project-nomad:latest
+    pull_policy: always
+    container_name: nomad_br_admin
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8082:8080"
+    volumes:
+      - /opt/project-nomad-br/storage:/app/storage
+      - /var/run/docker.sock:/var/run/docker.sock
+      - nomad-update-shared:/app/update-shared
+    environment:
+      - NODE_ENV=production
+      - NOMAD_STORAGE_PATH=/opt/project-nomad-br/storage
+      - PORT=8080
+      - LOG_LEVEL=info
+      - APP_KEY=nomad_brasil_key_2026
+      - HOST=0.0.0.0
+      - URL=http://localhost:8082
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=nomad
+      - DB_USER=nomad_user
+      - DB_PASSWORD=NomadBrasilUser@2026
+      - DB_NAME=nomad
+      - DB_SSL=false
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - DISABLE_COMPRESSION=false
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mysql:
+    image: mysql:8.0
+    container_name: nomad_br_mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=NomadBrasilRoot@2026
+      - MYSQL_DATABASE=nomad
+      - MYSQL_USER=nomad_user
+      - MYSQL_PASSWORD=NomadBrasilUser@2026
+    volumes:
+      - /opt/project-nomad-br/mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: nomad_br_redis
+    restart: unless-stopped
+    volumes:
+      - /opt/project-nomad-br/redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  dozzle:
+    image: amir20/dozzle:v10.0
+    container_name: nomad_br_dozzle
+    restart: unless-stopped
+    ports:
+      - "9998:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DOZZLE_ENABLE_ACTIONS=false
+      - DOZZLE_ENABLE_SHELL=false
+
+  updater:
+    image: ghcr.io/crosstalk-solutions/project-nomad-sidecar-updater:latest
+    pull_policy: always
+    container_name: nomad_br_updater
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/project-nomad-br:/opt/project-nomad
+      - nomad-update-shared:/shared
+
+  disk-collector:
+    image: ghcr.io/crosstalk-solutions/project-nomad-disk-collector:latest
+    pull_policy: always
+    container_name: nomad_br_disk_collector
+    restart: unless-stopped
+    volumes:
+      - /:/host:ro,rslave
+      - /opt/project-nomad-br/storage:/storage
+
+volumes:
+  nomad-update-shared:
+    driver: local
