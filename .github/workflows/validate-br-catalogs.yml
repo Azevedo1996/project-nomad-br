@@ -1,0 +1,46 @@
+name: Validate Brazilian Catalogs
+
+on:
+  push:
+    paths:
+      - "collections/br/**/*.json"
+      - "scripts/validate-br-catalogs.py"
+      - ".github/workflows/validate-br-catalogs.yml"
+  pull_request:
+    paths:
+      - "collections/br/**/*.json"
+      - "scripts/validate-br-catalogs.py"
+      - ".github/workflows/validate-br-catalogs.yml"
+  workflow_dispatch:
+
+jobs:
+  validate-br-catalogs:
+    name: Validate Project N.O.M.A.D. Brasil catalogs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate Brazilian catalog structure
+        run: |
+          python scripts/validate-br-catalogs.py
+
+      - name: Generate summary
+        if: always()
+        run: |
+          echo "# Validação dos Catálogos Brasileiros" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Este workflow valida apenas os catálogos em \`collections/br/\`." >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Arquivos esperados:" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- \`collections/br/wikipedia-br.json\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- \`collections/br/kiwix-categories-br.json\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- \`collections/br/maps-br.json\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- \`collections/br/catalog-index.json\`" >> "$GITHUB_STEP_SUMMARY"
