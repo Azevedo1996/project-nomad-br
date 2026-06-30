@@ -4,15 +4,15 @@
   "status": "initial-br-catalog",
   "notes": [
     "Catálogo inicial de categorias brasileiras para Kiwix/ZIM.",
-    "As URLs marcadas com validation_required=true precisam ser validadas na biblioteca Kiwix antes de uso automático.",
-    "Este catálogo prioriza conteúdo em português e conteúdos úteis para uso offline no Brasil."
+    "URLs reais ainda não preenchidas para evitar falha no workflow validate-collection-urls.",
+    "Preencher url, version e size_mb após validação dos arquivos reais."
   ],
   "categories": [
     {
       "name": "Conhecimento Essencial em Português",
       "slug": "conhecimento-essencial-pt-br",
       "icon": "IconBook",
-      "description": "Conteúdos fundamentais em português para consulta offline: Wikipédia, dicionário e viagens.",
+      "description": "Conteúdos fundamentais em português para consulta offline.",
       "language": "pt-BR",
       "tiers": [
         {
@@ -23,21 +23,25 @@
           "resources": [
             {
               "id": "wikipedia_pt_all_nopic",
-              "version": "validar",
+              "version": "pendente-validacao",
               "title": "Wikipédia em Português - Sem Imagens",
-              "description": "Enciclopédia em português para consulta offline, sem imagens para economizar espaço.",
-              "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_pt_all_nopic_YYYY-MM.zim",
+              "description": "Enciclopédia em português para consulta offline.",
+              "url": null,
               "size_mb": 0,
-              "validation_required": true
+              "validation_required": true,
+              "candidate_filename_pattern": "wikipedia_pt_all_nopic_AAAA-MM.zim",
+              "source_directory": "download.kiwix.org/zim/wikipedia/"
             },
             {
               "id": "wiktionary_pt_all_nopic",
-              "version": "validar",
+              "version": "pendente-validacao",
               "title": "Wiktionary em Português",
               "description": "Dicionário em português para uso offline.",
-              "url": "https://download.kiwix.org/zim/wiktionary/wiktionary_pt_all_nopic_YYYY-MM.zim",
+              "url": null,
               "size_mb": 0,
-              "validation_required": true
+              "validation_required": true,
+              "candidate_filename_pattern": "wiktionary_pt_all_nopic_AAAA-MM.zim",
+              "source_directory": "download.kiwix.org/zim/wiktionary/"
             }
           ]
         },
@@ -49,29 +53,33 @@
           "resources": [
             {
               "id": "wikivoyage_pt_all_maxi",
-              "version": "validar",
+              "version": "pendente-validacao",
               "title": "Wikivoyage em Português",
               "description": "Guia de viagens em português para consulta offline.",
-              "url": "https://download.kiwix.org/zim/wikivoyage/wikivoyage_pt_all_maxi_YYYY-MM.zim",
+              "url": null,
               "size_mb": 0,
-              "validation_required": true
+              "validation_required": true,
+              "candidate_filename_pattern": "wikivoyage_pt_all_maxi_AAAA-MM.zim",
+              "source_directory": "download.kiwix.org/zim/wikivoyage/"
             }
           ]
         },
         {
           "name": "Completo",
           "slug": "conhecimento-essencial-pt-br-comprehensive",
-          "description": "Inclui a Wikipédia em português completa com imagens, se houver espaço em disco.",
+          "description": "Inclui a Wikipédia em português completa com imagens quando validada.",
           "includesTier": "conhecimento-essencial-pt-br-standard",
           "resources": [
             {
               "id": "wikipedia_pt_all_maxi",
-              "version": "validar",
+              "version": "pendente-validacao",
               "title": "Wikipédia em Português - Completa",
-              "description": "Wikipédia em português com imagens. Requer mais armazenamento.",
-              "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_pt_all_maxi_YYYY-MM.zim",
+              "description": "Wikipédia em português com imagens.",
+              "url": null,
               "size_mb": 0,
-              "validation_required": true
+              "validation_required": true,
+              "candidate_filename_pattern": "wikipedia_pt_all_maxi_AAAA-MM.zim",
+              "source_directory": "download.kiwix.org/zim/wikipedia/"
             }
           ]
         }

@@ -4,8 +4,8 @@
   "status": "initial-br-catalog",
   "notes": [
     "Catálogo brasileiro inicial para opções de Wikipédia em português.",
-    "As URLs de ZIM devem ser validadas/atualizadas conforme os arquivos disponíveis em https://download.kiwix.org/zim/wikipedia/ antes de substituir o catálogo oficial do NOMAD.",
-    "Este arquivo foi criado como base para o Project N.O.M.A.D. Brasil."
+    "URLs reais de ZIM ainda não foram preenchidas para evitar falha no workflow validate-collection-urls.",
+    "Preencher os campos url, version e size_mb somente depois de validar os arquivos disponíveis na biblioteca Kiwix."
   ],
   "options": [
     {
@@ -20,35 +20,41 @@
     {
       "id": "pt-all-mini",
       "name": "Wikipédia em Português - Compacta",
-      "description": "Versão compacta da Wikipédia em português. Indicada para testes, laboratórios e máquinas com pouco espaço.",
+      "description": "Versão compacta planejada da Wikipédia em português.",
       "size_mb": 0,
-      "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_pt_all_mini_YYYY-MM.zim",
-      "version": "validar",
+      "url": null,
+      "version": "pendente-validacao",
       "language": "pt-BR",
       "priority": 1,
-      "validation_required": true
+      "validation_required": true,
+      "candidate_filename_pattern": "wikipedia_pt_all_mini_AAAA-MM.zim",
+      "source_directory": "download.kiwix.org/zim/wikipedia/"
     },
     {
       "id": "pt-all-nopic",
       "name": "Wikipédia em Português - Sem Imagens",
-      "description": "Versão da Wikipédia em português sem imagens. Boa relação entre conteúdo e tamanho.",
+      "description": "Versão planejada da Wikipédia em português sem imagens.",
       "size_mb": 0,
-      "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_pt_all_nopic_YYYY-MM.zim",
-      "version": "validar",
+      "url": null,
+      "version": "pendente-validacao",
       "language": "pt-BR",
       "priority": 2,
-      "validation_required": true
+      "validation_required": true,
+      "candidate_filename_pattern": "wikipedia_pt_all_nopic_AAAA-MM.zim",
+      "source_directory": "download.kiwix.org/zim/wikipedia/"
     },
     {
       "id": "pt-all-maxi",
       "name": "Wikipédia em Português - Completa",
-      "description": "Versão mais completa da Wikipédia em português, com imagens. Requer mais armazenamento.",
+      "description": "Versão planejada da Wikipédia em português com imagens.",
       "size_mb": 0,
-      "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_pt_all_maxi_YYYY-MM.zim",
-      "version": "validar",
+      "url": null,
+      "version": "pendente-validacao",
       "language": "pt-BR",
       "priority": 3,
-      "validation_required": true
+      "validation_required": true,
+      "candidate_filename_pattern": "wikipedia_pt_all_maxi_AAAA-MM.zim",
+      "source_directory": "download.kiwix.org/zim/wikipedia/"
     }
   ]
 }
