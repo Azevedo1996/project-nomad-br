@@ -11,19 +11,34 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
+      # Porta externa 8082 para evitar conflito caso a porta 8080 já esteja em uso no host.
       - "8082:8080"
     volumes:
+      # Diretório principal de armazenamento do NOMAD Brasil.
       - /opt/project-nomad-br/storage:/app/storage
+
+      # Necessário para o Command Center gerenciar containers/aplicações pelo Docker do host.
       - /var/run/docker.sock:/var/run/docker.sock
+
+      # Volume compartilhado entre admin e updater.
       - nomad-update-shared:/app/update-shared
     environment:
       - NODE_ENV=production
       - NOMAD_STORAGE_PATH=/opt/project-nomad-br/storage
       - PORT=8080
       - LOG_LEVEL=info
+
+      # Chave da aplicação. Precisa ter pelo menos 16 caracteres.
       - APP_KEY=nomad_brasil_key_2026
+
+      # Escuta em todas as interfaces dentro do container.
       - HOST=0.0.0.0
+
+      # Ajuste para o endereço real do servidor caso acesse pela rede.
+      # Exemplo: http://192.168.1.50:8082
       - URL=http://localhost:8082
+
+      # Banco de dados interno do stack NOMAD Brasil.
       - DB_HOST=mysql
       - DB_PORT=3306
       - DB_DATABASE=nomad
@@ -31,6 +46,8 @@ services:
       - DB_PASSWORD=NomadBrasilUser@2026
       - DB_NAME=nomad
       - DB_SSL=false
+
+      # Redis interno do stack NOMAD Brasil.
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - DISABLE_COMPRESSION=false
@@ -55,6 +72,7 @@ services:
       - MYSQL_USER=nomad_user
       - MYSQL_PASSWORD=NomadBrasilUser@2026
     volumes:
+      # Persistência do MySQL no host.
       - /opt/project-nomad-br/mysql:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
@@ -67,6 +85,7 @@ services:
     container_name: nomad_br_redis
     restart: unless-stopped
     volumes:
+      # Persistência do Redis no host.
       - /opt/project-nomad-br/redis:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -79,11 +98,14 @@ services:
     container_name: nomad_br_dozzle
     restart: unless-stopped
     ports:
+      # Porta externa 9998 para visualização de logs.
       - "9998:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
+      # Segurança: impede ações de stop/restart pela UI.
       - DOZZLE_ENABLE_ACTIONS=false
+      # Segurança: impede shell via UI.
       - DOZZLE_ENABLE_SHELL=false
 
   updater:
@@ -93,6 +115,7 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      # Este caminho deve apontar para o diretório onde está o compose no host Linux.
       - /opt/project-nomad-br:/opt/project-nomad
       - nomad-update-shared:/shared
 
@@ -102,6 +125,7 @@ services:
     container_name: nomad_br_disk_collector
     restart: unless-stopped
     volumes:
+      # Acesso somente leitura ao filesystem do host para coletar métricas de disco.
       - /:/host:ro,rslave
       - /opt/project-nomad-br/storage:/storage
 

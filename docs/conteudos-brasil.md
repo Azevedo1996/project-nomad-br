@@ -1,62 +1,54 @@
-\# Conteúdos brasileiros para o Project N.O.M.A.D. Brasil
+# Conteúdos brasileiros para o Project N.O.M.A.D. Brasil
 
+Esta documentação lista conteúdos recomendados para uso offline no Brasil.
 
+## Prioridade inicial
 
-Esta página lista conteúdos recomendados para uso offline no Brasil.
+- Wikipédia em português
+- Wiktionary em português
+- Wikivoyage em português
+- Materiais educacionais em português
+- Guias de primeiros socorros em português, quando disponíveis
+- Livros de domínio público em português
+- Documentos próprios do usuário
 
+## Kiwix / ZIM
 
+O Kiwix usa arquivos `.zim` para disponibilizar conteúdo offline.
 
-\## Kiwix / ZIM
-
-
-
-Prioridades recomendadas:
-
-
-
-\- Wikipédia em português
-
-\- Wiktionary em português
-
-\- Wikivoyage em português
-
-\- Conteúdos de medicina e primeiros socorros em português, quando disponíveis
-
-\- Livros de domínio público em português
-
-\- Documentações técnicas em português
-
-
-
-\## Tipos de arquivo ZIM
-
-
-
-Normalmente os arquivos podem aparecer com variações:
-
-
-
-\- `mini`: versão menor, geralmente apenas introduções
-
-\- `nopic`: sem imagens
-
-\- `maxi`: versão mais completa
-
-\- `all`: conteúdo amplo
-
-
-
-\## Estratégia recomendada
-
-
-
-Para máquinas com pouco disco:
-
-
+Tipos comuns:
 
 ```text
+mini  - menor, geralmente resumido
+nopic - sem imagens
+maxi  - mais completo
+all   - conteúdo amplo
+```
 
-wikipedia\_pt\_mini
+## Estratégia recomendada
 
-wikipedia\_pt\_nopic
+Para pouco espaço em disco:
 
+```text
+wikipedia_pt_mini
+wikipedia_pt_nopic
+```
+
+Para mais espaço:
+
+```text
+wikipedia_pt_all
+wiktionary_pt
+wikivoyage_pt
+```
+
+## Conteúdo próprio
+
+Também é recomendado usar o NOMAD como base local para documentos próprios:
+
+- PDFs técnicos
+- Manuais
+- Apostilas
+- Documentos de infraestrutura
+- Guias internos
+- Tutoriais em Markdown
