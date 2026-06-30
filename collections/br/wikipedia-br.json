@@ -1,0 +1,54 @@
+{
+  "spec_version": "2026-06-30-br",
+  "locale": "pt-BR",
+  "status": "initial-br-catalog",
+  "notes": [
+    "Catálogo brasileiro inicial para opções de Wikipédia em português.",
+    "As URLs de ZIM devem ser validadas/atualizadas conforme os arquivos disponíveis em https://download.kiwix.org/zim/wikipedia/ antes de substituir o catálogo oficial do NOMAD.",
+    "Este arquivo foi criado como base para o Project N.O.M.A.D. Brasil."
+  ],
+  "options": [
+    {
+      "id": "none",
+      "name": "Sem Wikipédia",
+      "description": "Ignorar instalação da Wikipédia durante o setup inicial.",
+      "size_mb": 0,
+      "url": null,
+      "version": null,
+      "language": "pt-BR"
+    },
+    {
+      "id": "pt-all-mini",
+      "name": "Wikipédia em Português - Compacta",
+      "description": "Versão compacta da Wikipédia em português. Indicada para testes, laboratórios e máquinas com pouco espaço.",
+      "size_mb": 0,
+      "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_pt_all_mini_YYYY-MM.zim",
+      "version": "validar",
+      "language": "pt-BR",
+      "priority": 1,
+      "validation_required": true
+    },
+    {
+      "id": "pt-all-nopic",
+      "name": "Wikipédia em Português - Sem Imagens",
+      "description": "Versão da Wikipédia em português sem imagens. Boa relação entre conteúdo e tamanho.",
+      "size_mb": 0,
+      "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_pt_all_nopic_YYYY-MM.zim",
+      "version": "validar",
+      "language": "pt-BR",
+      "priority": 2,
+      "validation_required": true
+    },
+    {
+      "id": "pt-all-maxi",
+      "name": "Wikipédia em Português - Completa",
+      "description": "Versão mais completa da Wikipédia em português, com imagens. Requer mais armazenamento.",
+      "size_mb": 0,
+      "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_pt_all_maxi_YYYY-MM.zim",
+      "version": "validar",
+      "language": "pt-BR",
+      "priority": 3,
+      "validation_required": true
+    }
+  ]
+}

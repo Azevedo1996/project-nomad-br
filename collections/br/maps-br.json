@@ -1,0 +1,120 @@
+{
+  "spec_version": "2026-06-30-br",
+  "locale": "pt-BR",
+  "status": "initial-br-catalog",
+  "notes": [
+    "Catálogo inicial de mapas brasileiros para Project N.O.M.A.D. Brasil.",
+    "Os arquivos .pmtiles ainda precisam ser gerados e publicados em Releases.",
+    "As URLs seguem o padrão planejado para o repositório Azevedo1996/project-nomad-br."
+  ],
+  "collections": [
+    {
+      "name": "Brasil",
+      "slug": "brasil",
+      "description": "Mapas offline do Brasil e regiões brasileiras.",
+      "icon": "IconMap",
+      "language": "pt-BR",
+      "resources": [
+        {
+          "id": "brasil",
+          "version": "2026-06-br",
+          "title": "Brasil",
+          "description": "Mapa offline do Brasil em formato PMTiles.",
+          "url": "https://github.com/Azevedo1996/project-nomad-br/releases/download/maps-br-v1/brasil_2026-06.pmtiles",
+          "size_mb": 0,
+          "status": "planned"
+        },
+        {
+          "id": "sudeste",
+          "version": "2026-06-br",
+          "title": "Região Sudeste",
+          "description": "Mapa offline da Região Sudeste.",
+          "url": "https://github.com/Azevedo1996/project-nomad-br/releases/download/maps-br-v1/sudeste_2026-06.pmtiles",
+          "size_mb": 0,
+          "status": "planned"
+        },
+        {
+          "id": "sul",
+          "version": "2026-06-br",
+          "title": "Região Sul",
+          "description": "Mapa offline da Região Sul.",
+          "url": "https://github.com/Azevedo1996/project-nomad-br/releases/download/maps-br-v1/sul_2026-06.pmtiles",
+          "size_mb": 0,
+          "status": "planned"
+        },
+        {
+          "id": "nordeste",
+          "version": "2026-06-br",
+          "title": "Região Nordeste",
+          "description": "Mapa offline da Região Nordeste.",
+          "url": "https://github.com/Azevedo1996/project-nomad-br/releases/download/maps-br-v1/nordeste_2026-06.pmtiles",
+          "size_mb": 0,
+          "status": "planned"
+        },
+        {
+          "id": "norte",
+          "version": "2026-06-br",
+          "title": "Região Norte",
+          "description": "Mapa offline da Região Norte.",
+          "url": "https://github.com/Azevedo1996/project-nomad-br/releases/download/maps-br-v1/norte_2026-06.pmtiles",
+          "size_mb": 0,
+          "status": "planned"
+        },
+        {
+          "id": "centro-oeste",
+          "version": "2026-06-br",
+          "title": "Região Centro-Oeste",
+          "description": "Mapa offline da Região Centro-Oeste.",
+          "url": "https://github.com/Azevedo1996/project-nomad-br/releases/download/maps-br-v1/centro-oeste_2026-06.pmtiles",
+          "size_mb": 0,
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "name": "Estados do Sudeste",
+      "slug": "estados-sudeste",
+      "description": "Mapas offline dos estados da Região Sudeste.",
+      "icon": "IconMapPin",
+      "language": "pt-BR",
+      "resources": [
+        {
+          "id": "rio-de-janeiro",
+          "version": "2026-06-br",
+          "title": "Rio de Janeiro",
+          "description": "Mapa offline do estado do Rio de Janeiro.",
+          "url": "https://github.com/Azevedo1996/project-nomad-br/releases/download/maps-br-v1/rio-de-janeiro_2026-06.pmtiles",
+          "size_mb": 0,
+          "status": "planned"
+        },
+        {
+          "id": "sao-paulo",
+          "version": "2026-06-br",
+          "title": "São Paulo",
+          "description": "Mapa offline do estado de São Paulo.",
+          "url": "https://github.com/Azevedo1996/project-nomad-br/releases/download/maps-br-v1/sao-paulo_2026-06.pmtiles",
+          "size_mb": 0,
+          "status": "planned"
+        },
+        {
+          "id": "minas-gerais",
+          "version": "2026-06-br",
+          "title": "Minas Gerais",
+          "description": "Mapa offline do estado de Minas Gerais.",
+          "url": "https://github.com/Azevedo1996/project-nomad-br/releases/download/maps-br-v1/minas-gerais_2026-06.pmtiles",
+          "size_mb": 0,
+          "status": "planned"
+        },
+        {
+          "id": "espirito-santo",
+          "version": "2026-06-br",
+          "title": "Espírito Santo",
+          "description": "Mapa offline do estado do Espírito Santo.",
+          "url": "https://github.com/Azevedo1996/project-nomad-br/releases/download/maps-br-v1/espirito-santo_2026-06.pmtiles",
+          "size_mb": 0,
+          "status": "planned"
+        }
+      ]
+    }
+  ]
+}

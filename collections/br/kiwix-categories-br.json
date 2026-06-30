@@ -1,0 +1,113 @@
+{
+  "spec_version": "2026-06-30-br",
+  "locale": "pt-BR",
+  "status": "initial-br-catalog",
+  "notes": [
+    "Catálogo inicial de categorias brasileiras para Kiwix/ZIM.",
+    "As URLs marcadas com validation_required=true precisam ser validadas na biblioteca Kiwix antes de uso automático.",
+    "Este catálogo prioriza conteúdo em português e conteúdos úteis para uso offline no Brasil."
+  ],
+  "categories": [
+    {
+      "name": "Conhecimento Essencial em Português",
+      "slug": "conhecimento-essencial-pt-br",
+      "icon": "IconBook",
+      "description": "Conteúdos fundamentais em português para consulta offline: Wikipédia, dicionário e viagens.",
+      "language": "pt-BR",
+      "tiers": [
+        {
+          "name": "Essencial",
+          "slug": "conhecimento-essencial-pt-br-essential",
+          "description": "Pacote inicial recomendado para usuários brasileiros.",
+          "recommended": true,
+          "resources": [
+            {
+              "id": "wikipedia_pt_all_nopic",
+              "version": "validar",
+              "title": "Wikipédia em Português - Sem Imagens",
+              "description": "Enciclopédia em português para consulta offline, sem imagens para economizar espaço.",
+              "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_pt_all_nopic_YYYY-MM.zim",
+              "size_mb": 0,
+              "validation_required": true
+            },
+            {
+              "id": "wiktionary_pt_all_nopic",
+              "version": "validar",
+              "title": "Wiktionary em Português",
+              "description": "Dicionário em português para uso offline.",
+              "url": "https://download.kiwix.org/zim/wiktionary/wiktionary_pt_all_nopic_YYYY-MM.zim",
+              "size_mb": 0,
+              "validation_required": true
+            }
+          ]
+        },
+        {
+          "name": "Padrão",
+          "slug": "conhecimento-essencial-pt-br-standard",
+          "description": "Inclui conteúdos adicionais úteis em português.",
+          "includesTier": "conhecimento-essencial-pt-br-essential",
+          "resources": [
+            {
+              "id": "wikivoyage_pt_all_maxi",
+              "version": "validar",
+              "title": "Wikivoyage em Português",
+              "description": "Guia de viagens em português para consulta offline.",
+              "url": "https://download.kiwix.org/zim/wikivoyage/wikivoyage_pt_all_maxi_YYYY-MM.zim",
+              "size_mb": 0,
+              "validation_required": true
+            }
+          ]
+        },
+        {
+          "name": "Completo",
+          "slug": "conhecimento-essencial-pt-br-comprehensive",
+          "description": "Inclui a Wikipédia em português completa com imagens, se houver espaço em disco.",
+          "includesTier": "conhecimento-essencial-pt-br-standard",
+          "resources": [
+            {
+              "id": "wikipedia_pt_all_maxi",
+              "version": "validar",
+              "title": "Wikipédia em Português - Completa",
+              "description": "Wikipédia em português com imagens. Requer mais armazenamento.",
+              "url": "https://download.kiwix.org/zim/wikipedia/wikipedia_pt_all_maxi_YYYY-MM.zim",
+              "size_mb": 0,
+              "validation_required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Educação Brasileira",
+      "slug": "educacao-brasileira",
+      "icon": "IconSchool",
+      "description": "Materiais educacionais em português para apoio escolar, cursos e estudo offline.",
+      "language": "pt-BR",
+      "tiers": [
+        {
+          "name": "Essencial",
+          "slug": "educacao-brasileira-essential",
+          "description": "Espaço reservado para canais e conteúdos educacionais brasileiros compatíveis com NOMAD/Kolibri/Kiwix.",
+          "recommended": true,
+          "resources": []
+        }
+      ]
+    },
+    {
+      "name": "Infraestrutura e Tecnologia",
+      "slug": "infra-tecnologia-pt-br",
+      "icon": "IconTerminal2",
+      "description": "Documentações, guias técnicos e materiais locais para Linux, Docker, redes e infraestrutura.",
+      "language": "pt-BR",
+      "tiers": [
+        {
+          "name": "Local",
+          "slug": "infra-tecnologia-pt-br-local",
+          "description": "Categoria para documentos próprios adicionados pelo usuário ao Knowledge Base.",
+          "recommended": true,
+          "resources": []
+        }
+      ]
+    }
+  ]
+}

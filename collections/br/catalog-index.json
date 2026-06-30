@@ -1,0 +1,22 @@
+{
+  "project": "Project N.O.M.A.D. Brasil",
+  "repository": "https://github.com/Azevedo1996/project-nomad-br",
+  "generated_at": "2026-06-30",
+  "catalogs": [
+    {
+      "name": "Wikipédia Brasil",
+      "file": "collections/br/wikipedia-br.json",
+      "description": "Opções iniciais para Wikipédia em português."
+    },
+    {
+      "name": "Categorias Kiwix Brasil",
+      "file": "collections/br/kiwix-categories-br.json",
+      "description": "Categorias brasileiras para conteúdos ZIM/Kiwix."
+    },
+    {
+      "name": "Mapas Brasil",
+      "file": "collections/br/maps-br.json",
+      "description": "Catálogo planejado de mapas PMTiles do Brasil."
+    }
+  ]
+}
