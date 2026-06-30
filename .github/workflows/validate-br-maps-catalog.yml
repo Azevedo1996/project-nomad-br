@@ -1,0 +1,47 @@
+name: Validate Brazilian Maps Catalog
+
+on:
+  push:
+    paths:
+      - "collections/br/maps-br.json"
+      - "scripts/update-br-maps-catalog.py"
+      - ".github/workflows/validate-br-maps-catalog.yml"
+  pull_request:
+    paths:
+      - "collections/br/maps-br.json"
+      - "scripts/update-br-maps-catalog.py"
+      - ".github/workflows/validate-br-maps-catalog.yml"
+  workflow_dispatch:
+
+jobs:
+  validate-maps-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate Brazilian catalogs
+        run: |
+          python scripts/validate-br-catalogs.py
+
+      - name: Check maps catalog JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path('collections/br/maps-br.json')
+          data = json.loads(path.read_text(encoding='utf-8'))
+          resources = []
+          for collection in data.get('collections', []):
+              resources.extend(collection.get('resources', []))
+          print(f'Recursos de mapas no catálogo: {len(resources)}')
+          planned = [r for r in resources if r.get('status') == 'planned']
+          available = [r for r in resources if r.get('status') == 'available']
+          print(f'Planejados: {len(planned)}')
+          print(f'Disponíveis: {len(available)}')
+          PY
