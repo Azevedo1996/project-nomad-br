@@ -30,11 +30,11 @@ jobs:
 
           def walk(value):
               if isinstance(value, dict):
-                  for k, v in value.items():
-                      if k == "url" and isinstance(v, str) and v.startswith(("http://", "https://")):
-                          urls.append(v)
+                  for key, item in value.items():
+                      if key == "url" and isinstance(item, str) and item.startswith(("http://", "https://")):
+                          urls.append(item)
                       else:
-                          walk(v)
+                          walk(item)
               elif isinstance(value, list):
                   for item in value:
                       walk(item)
@@ -53,43 +53,65 @@ jobs:
 
           echo "URLs encontradas: $(wc -l < urls.txt)"
 
-      - name: Validate URLs safely
+      - name: Validate URLs as advisory report
         shell: bash
         run: |
           set +e
-          FAILED=0
+
+          TOTAL=0
+          OK=0
+          WARN=0
+          FAIL=0
+
+          echo "# Relatório de validação de URLs" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Status | URL | Observação |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|---|" >> "$GITHUB_STEP_SUMMARY"
 
           while IFS= read -r URL; do
             [ -z "$URL" ] && continue
+            TOTAL=$((TOTAL + 1))
 
             echo "Checking: $URL ..."
 
-            # 1) Tenta HEAD primeiro. Isso valida existência sem baixar arquivos grandes.
+            # Tenta HEAD primeiro para não baixar arquivos grandes.
             curl -fsSLI --max-time 30 --retry 2 --retry-delay 2 "$URL" >/dev/null 2>&1
             CODE=$?
 
             if [ "$CODE" -eq 0 ]; then
               echo "OK: $URL"
+              OK=$((OK + 1))
+              echo "| OK | $URL | HEAD respondeu com sucesso |" >> "$GITHUB_STEP_SUMMARY"
               continue
             fi
 
-            # 2) Alguns servidores não respondem bem a HEAD. Fallback com Range 0-0.
+            # Fallback com Range 0-0 para servidores que não aceitam HEAD.
             curl -fsSL --range 0-0 --max-time 30 --retry 2 --retry-delay 2 "$URL" >/dev/null 2>&1
             CODE=$?
 
             if [ "$CODE" -eq 0 ]; then
               echo "OK via range fallback: $URL"
+              OK=$((OK + 1))
+              echo "| OK | $URL | GET parcial respondeu com sucesso |" >> "$GITHUB_STEP_SUMMARY"
               continue
             fi
 
-            # 3) curl exit 63 = arquivo grande/limite de tamanho. Em catálogos ZIM/PMTiles isso não deve reprovar o build.
-            if [ "$CODE" -eq 63 ]; then
-              echo "::warning::Arquivo grande detectado/limite de tamanho em $URL. Tratando como aviso."
-              continue
-            fi
-
-            echo "::error::URL inválida ou indisponível: $URL (curl exit code $CODE)"
-            FAILED=1
+            # Mantemos como warning porque o fork brasileiro não deve quebrar por links legados do catálogo original.
+            echo "::warning::URL não validada: $URL (curl exit code $CODE)"
+            WARN=$((WARN + 1))
+            echo "| AVISO | $URL | curl exit code $CODE |" >> "$GITHUB_STEP_SUMMARY"
           done < urls.txt
 
-          exit "$FAILED"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "## Resumo" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Total de URLs: $TOTAL" >> "$GITHUB_STEP_SUMMARY"
+          echo "- URLs OK: $OK" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Avisos: $WARN" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Este workflow é consultivo/advisory e não bloqueia o desenvolvimento do Project N.O.M.A.D. Brasil por URLs externas instáveis ou legadas." >> "$GITHUB_STEP_SUMMARY"
+
+          echo "Validação consultiva concluída. Total=$TOTAL OK=$OK Avisos=$WARN"
+
+          # Importante: não falhar o workflow enquanto estivermos mantendo catálogos brasileiros e legados em paralelo.
+          exit 0
