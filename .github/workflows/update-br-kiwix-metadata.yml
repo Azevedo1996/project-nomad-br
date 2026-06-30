@@ -1,0 +1,75 @@
+name: Update Brazilian Kiwix Metadata
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Modo de execução"
+        required: true
+        default: "dry-run"
+        type: choice
+        options:
+          - dry-run
+          - apply
+
+permissions:
+  contents: write
+
+jobs:
+  update-kiwix-metadata:
+    name: Update Project N.O.M.A.D. Brasil Kiwix metadata
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Kiwix metadata updater in dry-run mode
+        if: ${{ github.event.inputs.mode == 'dry-run' }}
+        run: |
+          python scripts/update-br-kiwix-metadata.py --dry-run --report docs/relatorio-kiwix-br.md
+
+      - name: Run Kiwix metadata updater in apply mode
+        if: ${{ github.event.inputs.mode == 'apply' }}
+        run: |
+          python scripts/update-br-kiwix-metadata.py --apply --report docs/relatorio-kiwix-br.md
+
+      - name: Validate Brazilian catalogs after update
+        run: |
+          python scripts/validate-br-catalogs.py
+
+      - name: Generate workflow summary
+        if: always()
+        run: |
+          echo "# Atualização de Metadados Kiwix - Project N.O.M.A.D. Brasil" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Modo executado: \`${{ github.event.inputs.mode }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f docs/relatorio-kiwix-br.md ]; then
+            cat docs/relatorio-kiwix-br.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Relatório não foi gerado." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Commit updated Kiwix metadata
+        if: ${{ github.event.inputs.mode == 'apply' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add collections/br/wikipedia-br.json collections/br/kiwix-categories-br.json docs/relatorio-kiwix-br.md
+
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteração para commitar."
+            exit 0
+          fi
+
+          git commit -m "Atualiza metadados Kiwix em portugues"
+          git push
