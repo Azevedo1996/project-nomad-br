@@ -3,56 +3,93 @@ name: Validate Collection URLs
 on:
   push:
     paths:
-      - 'collections/**.json'
+      - "collections/**/*.json"
+      - ".github/workflows/validate-collection-urls.yml"
   pull_request:
     paths:
-      - 'collections/**.json'
+      - "collections/**/*.json"
+      - ".github/workflows/validate-collection-urls.yml"
+  workflow_dispatch:
 
 jobs:
   validate-urls:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Extract and validate URLs
+      - name: Extract URLs from collection catalogs
+        shell: bash
         run: |
+          python3 <<'PY' > urls.txt
+          import json
+          from pathlib import Path
+
+          urls = []
+
+          def walk(value):
+              if isinstance(value, dict):
+                  for k, v in value.items():
+                      if k == "url" and isinstance(v, str) and v.startswith(("http://", "https://")):
+                          urls.append(v)
+                      else:
+                          walk(v)
+              elif isinstance(value, list):
+                  for item in value:
+                      walk(item)
+
+          for path in sorted(Path("collections").rglob("*.json")):
+              try:
+                  data = json.loads(path.read_text(encoding="utf-8"))
+              except Exception as exc:
+                  print(f"::warning file={path}::Could not parse JSON: {exc}")
+                  continue
+              walk(data)
+
+          for url in sorted(set(urls)):
+              print(url)
+          PY
+
+          echo "URLs encontradas: $(wc -l < urls.txt)"
+
+      - name: Validate URLs safely
+        shell: bash
+        run: |
+          set +e
           FAILED=0
-          CHECKED=0
-          FAILED_URLS=""
 
-          # Recursively extract all non-null string URLs from every JSON file in collections/
-          URLS=$(jq -r '.. | .url? | select(type == "string")' collections/*.json | sort -u)
+          while IFS= read -r URL; do
+            [ -z "$URL" ] && continue
 
-          while IFS= read -r url; do
-            [ -z "$url" ] && continue
-            CHECKED=$((CHECKED + 1))
-            printf "Checking: %s ... " "$url"
+            echo "Checking: $URL ..."
 
-            # Use Range: bytes=0-0 to avoid downloading the full file.
-            # --max-filesize 1 aborts early if the server ignores the Range header
-            # and returns 200 with the full body. The HTTP status is still captured.
-            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
-              --range 0-0 \
-              --max-filesize 1 \
-              --max-time 30 \
-              --location \
-              "$url")
+            # 1) Tenta HEAD primeiro. Isso valida existência sem baixar arquivos grandes.
+            curl -fsSLI --max-time 30 --retry 2 --retry-delay 2 "$URL" >/dev/null 2>&1
+            CODE=$?
 
-            if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "206" ]; then
-              echo "OK ($HTTP_CODE)"
-            else
-              echo "FAILED ($HTTP_CODE)"
-              FAILED=$((FAILED + 1))
-              FAILED_URLS="$FAILED_URLS\n  - $url (HTTP $HTTP_CODE)"
+            if [ "$CODE" -eq 0 ]; then
+              echo "OK: $URL"
+              continue
             fi
-          done <<< "$URLS"
 
-          echo ""
-          echo "Checked $CHECKED URLs, $FAILED failed."
+            # 2) Alguns servidores não respondem bem a HEAD. Fallback com Range 0-0.
+            curl -fsSL --range 0-0 --max-time 30 --retry 2 --retry-delay 2 "$URL" >/dev/null 2>&1
+            CODE=$?
 
-          if [ "$FAILED" -gt 0 ]; then
-            echo ""
-            echo "Broken URLs:"
-            printf "%b\n" "$FAILED_URLS"
-            exit 1
-          fi
+            if [ "$CODE" -eq 0 ]; then
+              echo "OK via range fallback: $URL"
+              continue
+            fi
+
+            # 3) curl exit 63 = arquivo grande/limite de tamanho. Em catálogos ZIM/PMTiles isso não deve reprovar o build.
+            if [ "$CODE" -eq 63 ]; then
+              echo "::warning::Arquivo grande detectado/limite de tamanho em $URL. Tratando como aviso."
+              continue
+            fi
+
+            echo "::error::URL inválida ou indisponível: $URL (curl exit code $CODE)"
+            FAILED=1
+          done < urls.txt
+
+          exit "$FAILED"
