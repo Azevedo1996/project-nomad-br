@@ -1,0 +1,85 @@
+{
+  "project": "Project N.O.M.A.D. Brasil",
+  "catalog_version": "2026-06-30-br",
+  "notes": [
+    "Arquivo de planejamento dos mapas brasileiros em PMTiles.",
+    "BBOX inicial é aproximado e serve para geração/teste rápido.",
+    "Para release pública, preferir GeoJSON oficial por limite administrativo quando disponível."
+  ],
+  "source": {
+    "preferred_pmtiles_planet": "https://build.protomaps.com/YYYYMMDD.pmtiles",
+    "geofabrik_brazil_page": "https://download.geofabrik.de/south-america/brazil.html"
+  },
+  "regions": [
+    {
+      "id": "brasil",
+      "title": "Brasil",
+      "bbox": "-74.0,-34.0,-34.0,6.0",
+      "output": "maps/br/output/brasil.pmtiles",
+      "geojson": "maps/br/geojson/brasil.geojson"
+    },
+    {
+      "id": "sudeste",
+      "title": "Região Sudeste",
+      "bbox": "-53.5,-25.5,-39.0,-14.0",
+      "output": "maps/br/output/sudeste.pmtiles",
+      "geojson": "maps/br/geojson/sudeste.geojson"
+    },
+    {
+      "id": "sul",
+      "title": "Região Sul",
+      "bbox": "-58.0,-34.0,-48.0,-22.0",
+      "output": "maps/br/output/sul.pmtiles",
+      "geojson": "maps/br/geojson/sul.geojson"
+    },
+    {
+      "id": "nordeste",
+      "title": "Região Nordeste",
+      "bbox": "-49.5,-18.5,-34.5,-1.0",
+      "output": "maps/br/output/nordeste.pmtiles",
+      "geojson": "maps/br/geojson/nordeste.geojson"
+    },
+    {
+      "id": "norte",
+      "title": "Região Norte",
+      "bbox": "-74.5,-14.0,-44.0,6.0",
+      "output": "maps/br/output/norte.pmtiles",
+      "geojson": "maps/br/geojson/norte.geojson"
+    },
+    {
+      "id": "centro-oeste",
+      "title": "Região Centro-Oeste",
+      "bbox": "-62.0,-25.0,-45.0,-7.0",
+      "output": "maps/br/output/centro-oeste.pmtiles",
+      "geojson": "maps/br/geojson/centro-oeste.geojson"
+    },
+    {
+      "id": "rio-de-janeiro",
+      "title": "Rio de Janeiro",
+      "bbox": "-45.5,-23.5,-40.5,-20.5",
+      "output": "maps/br/output/rio-de-janeiro.pmtiles",
+      "geojson": "maps/br/geojson/rio-de-janeiro.geojson"
+    },
+    {
+      "id": "sao-paulo",
+      "title": "São Paulo",
+      "bbox": "-53.2,-25.5,-44.0,-19.5",
+      "output": "maps/br/output/sao-paulo.pmtiles",
+      "geojson": "maps/br/geojson/sao-paulo.geojson"
+    },
+    {
+      "id": "minas-gerais",
+      "title": "Minas Gerais",
+      "bbox": "-52.0,-23.0,-39.8,-14.0",
+      "output": "maps/br/output/minas-gerais.pmtiles",
+      "geojson": "maps/br/geojson/minas-gerais.geojson"
+    },
+    {
+      "id": "espirito-santo",
+      "title": "Espírito Santo",
+      "bbox": "-42.5,-21.5,-39.5,-17.5",
+      "output": "maps/br/output/espirito-santo.pmtiles",
+      "geojson": "maps/br/geojson/espirito-santo.geojson"
+    }
+  ]
+}

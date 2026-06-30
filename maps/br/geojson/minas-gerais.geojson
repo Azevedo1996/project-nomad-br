@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "minas-gerais",
+        "name": "Minas Gerais",
+        "warning": "BBOX aproximado para testes; substituir por limite oficial quando possível."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -52.0,
+              -23.0
+            ],
+            [
+              -39.8,
+              -23.0
+            ],
+            [
+              -39.8,
+              -14.0
+            ],
+            [
+              -52.0,
+              -14.0
+            ],
+            [
+              -52.0,
+              -23.0
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "centro-oeste",
+        "name": "Região Centro-Oeste",
+        "warning": "BBOX aproximado para testes; substituir por limite oficial quando possível."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -62.0,
+              -25.0
+            ],
+            [
+              -45.0,
+              -25.0
+            ],
+            [
+              -45.0,
+              -7.0
+            ],
+            [
+              -62.0,
+              -7.0
+            ],
+            [
+              -62.0,
+              -25.0
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

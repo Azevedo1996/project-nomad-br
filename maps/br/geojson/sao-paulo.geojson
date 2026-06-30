@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sao-paulo",
+        "name": "São Paulo",
+        "warning": "BBOX aproximado para testes; substituir por limite oficial quando possível."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -53.2,
+              -25.5
+            ],
+            [
+              -44.0,
+              -25.5
+            ],
+            [
+              -44.0,
+              -19.5
+            ],
+            [
+              -53.2,
+              -19.5
+            ],
+            [
+              -53.2,
+              -25.5
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

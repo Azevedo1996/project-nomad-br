@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sudeste",
+        "name": "Região Sudeste",
+        "warning": "BBOX aproximado para testes; substituir por limite oficial quando possível."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -53.5,
+              -25.5
+            ],
+            [
+              -39.0,
+              -25.5
+            ],
+            [
+              -39.0,
+              -14.0
+            ],
+            [
+              -53.5,
+              -14.0
+            ],
+            [
+              -53.5,
+              -25.5
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

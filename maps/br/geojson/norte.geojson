@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "norte",
+        "name": "Região Norte",
+        "warning": "BBOX aproximado para testes; substituir por limite oficial quando possível."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.5,
+              -14.0
+            ],
+            [
+              -44.0,
+              -14.0
+            ],
+            [
+              -44.0,
+              6.0
+            ],
+            [
+              -74.5,
+              6.0
+            ],
+            [
+              -74.5,
+              -14.0
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Arquivos PMTiles gerados localmente podem ser grandes.
+maps/br/output/*.pmtiles
+maps/br/output/*.metadata.json

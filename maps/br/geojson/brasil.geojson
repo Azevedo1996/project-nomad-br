@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "brasil",
+        "name": "Brasil",
+        "warning": "BBOX aproximado para testes; substituir por limite oficial quando possível."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.0,
+              -34.0
+            ],
+            [
+              -34.0,
+              -34.0
+            ],
+            [
+              -34.0,
+              6.0
+            ],
+            [
+              -74.0,
+              6.0
+            ],
+            [
+              -74.0,
+              -34.0
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

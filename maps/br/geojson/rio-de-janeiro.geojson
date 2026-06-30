@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "rio-de-janeiro",
+        "name": "Rio de Janeiro",
+        "warning": "BBOX aproximado para testes; substituir por limite oficial quando possível."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -45.5,
+              -23.5
+            ],
+            [
+              -40.5,
+              -23.5
+            ],
+            [
+              -40.5,
+              -20.5
+            ],
+            [
+              -45.5,
+              -20.5
+            ],
+            [
+              -45.5,
+              -23.5
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
