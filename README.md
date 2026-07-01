@@ -2,341 +2,215 @@
 
 > Servidor offline de conhecimento, mapas, educação e IA local adaptado para usuários brasileiros.
 
-O **Project N.O.M.A.D. Brasil** é uma adaptação brasileira e comunitária do projeto open source **Project N.O.M.A.D.**, com foco em tornar a solução mais acessível para pessoas brasileiras por meio de documentação em português, conteúdo offline em português brasileiro, mapas do Brasil e uso de IA local orientada ao idioma português.
+O **Project N.O.M.A.D. Brasil** é uma adaptação brasileira e comunitária do **Project N.O.M.A.D.**, com foco em facilitar o uso da plataforma por pessoas brasileiras, priorizando documentação em português, conteúdos offline em português, mapas do Brasil e IA local respondendo em português brasileiro.
 
-Este repositório mantém uma base paralela ao projeto original, com o objetivo de facilitar instalação, uso, documentação, testes e futuras customizações para o público brasileiro.
-
----
-
-## Sumário
-
-- [Objetivo](#objetivo)
-- [O que é o Project N.O.M.A.D.](#o-que-é-o-project-nomad)
-- [Por que uma versão brasileira?](#por-que-uma-versão-brasileira)
-- [Status do projeto](#status-do-projeto)
-- [Funcionalidades](#funcionalidades)
-- [Instalação rápida](#instalação-rápida)
-- [Docker Compose brasileiro](#docker-compose-brasileiro)
-- [Acessos padrão](#acessos-padrão)
-- [Conteúdos recomendados para o Brasil](#conteúdos-recomendados-para-o-brasil)
-- [Mapas do Brasil](#mapas-do-brasil)
-- [IA local em português](#ia-local-em-português)
-- [Estrutura do projeto](#estrutura-do-projeto)
-- [Roadmap](#roadmap)
-- [Requisitos recomendados](#requisitos-recomendados)
-- [Segurança](#segurança)
-- [Backup](#backup)
-- [Como contribuir](#como-contribuir)
-- [Créditos](#créditos)
-- [Licença](#licença)
+Este repositório mantém uma base paralela ao projeto original, preservando os créditos e a licença, mas adicionando uma camada brasileira de documentação, catálogos, scripts e automações.
 
 ---
 
 ## Objetivo
 
-O objetivo do **Project N.O.M.A.D. Brasil** é criar uma versão brasileira paralela do Project N.O.M.A.D., mantendo os créditos e a compatibilidade com o projeto original, mas adicionando uma camada voltada ao Brasil.
+O objetivo do Project N.O.M.A.D. Brasil é permitir que usuários brasileiros consigam montar um servidor local/offline com:
 
-A proposta inicial é:
-
-- Facilitar a instalação para usuários brasileiros;
-- Documentar tudo em português brasileiro;
-- Incentivar o uso de conteúdos offline em português;
-- Adicionar documentação para mapas offline do Brasil;
-- Orientar o uso de IA local respondendo em português;
-- Criar uma base para futura tradução da interface principal;
-- Disponibilizar um ambiente pronto para laboratórios, estudo, preparação emergencial e uso offline.
-
----
-
-## O que é o Project N.O.M.A.D.
-
-**N.O.M.A.D.** significa:
-
-```text
-Node for Offline Media, Archives, and Data
-```
-
-O Project N.O.M.A.D. é uma plataforma offline-first que permite rodar, em um servidor local, ferramentas de conhecimento, mapas, educação, IA e utilidades técnicas.
-
-A ideia principal é simples:
-
-```text
-Baixe o conteúdo enquanto há internet.
-Depois use tudo localmente, mesmo sem conexão.
-```
-
-Com isso, é possível criar um servidor local com:
-
-- Enciclopédias offline;
-- Biblioteca de documentos;
-- Mapas offline;
-- Cursos e materiais educacionais;
-- IA local;
-- Ferramentas técnicas;
-- Notas locais;
-- Base de conhecimento pesquisável.
-
----
-
-## Por que uma versão brasileira?
-
-O projeto original é excelente, mas grande parte da experiência inicial está em inglês e algumas coleções de mapas/conteúdos são mais direcionadas a outros países.
-
-Para muitos usuários brasileiros, isso cria barreiras como:
-
-- Interface e documentação em inglês;
-- Dificuldade para encontrar conteúdos em português;
-- Ausência de catálogo brasileiro inicial;
-- Falta de mapas prontos do Brasil;
-- Falta de instruções específicas para ambiente Windows/Linux usado no Brasil;
-- Dificuldade para configurar IA local respondendo em português.
-
-O **Project N.O.M.A.D. Brasil** tenta resolver essas barreiras de forma comunitária.
+- biblioteca de conhecimento em português;
+- Wikipédia e outros conteúdos offline via Kiwix;
+- mapas offline do Brasil em formato PMTiles;
+- educação offline;
+- IA local orientada ao português brasileiro;
+- documentação simples e prática;
+- scripts e workflows para manter catálogos brasileiros.
 
 ---
 
 ## Status do projeto
 
-Este projeto está em fase inicial.
+Este projeto está em desenvolvimento ativo.
 
-A primeira etapa consiste em:
+### Já iniciado
 
-- Importar o código base do Project N.O.M.A.D.;
-- Criar documentação brasileira;
-- Criar Docker Compose adaptado;
-- Documentar o uso de conteúdos em português;
-- Documentar mapas do Brasil;
-- Preparar a base para futuras traduções da interface.
+- Código base importado para repositório brasileiro;
+- README principal em português;
+- Docker Compose brasileiro;
+- documentação inicial para usuários;
+- catálogos brasileiros em `collections/br/`;
+- validador dos catálogos brasileiros;
+- workflow específico para validar catálogos brasileiros;
+- workflow consultivo para validação de URLs externas;
+- scripts para atualizar metadados Kiwix em português;
+- estrutura inicial para geração de mapas PMTiles do Brasil;
+- script para atualizar catálogo de mapas brasileiros.
 
-A interface principal ainda pode estar em inglês durante a fase inicial.
+### Em andamento
 
----
-
-## Funcionalidades
-
-### Biblioteca offline
-
-Por meio do Kiwix, o ambiente pode disponibilizar conteúdos offline em formato `.zim`, como:
-
-- Wikipédia em português;
-- Wiktionary em português;
-- Wikivoyage em português;
-- Livros de domínio público;
-- Referências técnicas;
-- Materiais educacionais;
-- Documentações locais;
-- Guias de primeiros socorros;
-- Manuais e apostilas.
-
----
-
-### IA local em português
-
-Com Ollama e modelos locais, o usuário pode utilizar uma IA executando no próprio servidor, sem depender de serviços em nuvem.
-
-Uso esperado:
-
-- Perguntas e respostas em português;
-- Apoio a estudos;
-- Explicações técnicas;
-- Análise de documentos;
-- Ajuda com Linux, redes, Docker e infraestrutura;
-- Consulta a materiais locais quando integrada à base de conhecimento.
-
----
-
-### Mapas offline do Brasil
-
-O projeto pretende documentar e disponibilizar mapas offline em formato `.pmtiles`, derivados de dados abertos do OpenStreetMap.
-
-Mapas planejados:
-
-```text
-brasil.pmtiles
-sudeste.pmtiles
-sul.pmtiles
-nordeste.pmtiles
-norte.pmtiles
-centro-oeste.pmtiles
-rio-de-janeiro.pmtiles
-sao-paulo.pmtiles
-minas-gerais.pmtiles
-espirito-santo.pmtiles
-```
-
----
-
-### Educação offline
-
-A versão brasileira pretende orientar o uso de conteúdos educacionais em português, incluindo materiais compatíveis com Kolibri e conteúdos educacionais brasileiros quando disponíveis.
-
-Exemplos de foco:
-
-- Matemática;
-- Ciências;
-- Língua Portuguesa;
-- Ensino Fundamental;
-- Ensino Médio;
-- BNCC;
-- Cursos técnicos;
-- Conteúdos livres em português.
-
----
-
-### Ferramentas técnicas
-
-O ecossistema do Project N.O.M.A.D. pode incluir ferramentas úteis como:
-
-- Kiwix;
-- Ollama;
-- Qdrant;
-- Kolibri;
-- CyberChef;
-- FlatNotes;
-- OpenWebUI;
-- Mapas offline;
-- Visualização de logs;
-- Gerenciamento de apps e containers.
+- validação dos arquivos ZIM em português;
+- preenchimento automático de URLs reais do Kiwix;
+- geração e publicação dos primeiros mapas `.pmtiles` brasileiros;
+- melhoria do catálogo brasileiro;
+- preparação para futura tradução da interface.
 
 ---
 
 ## Instalação rápida
 
-> Recomendado para usuários que já possuem Docker e Docker Compose instalados.
-
-Clone este repositório:
+Clone o repositório:
 
 ```bash
 git clone https://github.com/Azevedo1996/project-nomad-br.git
 cd project-nomad-br
 ```
 
-Suba o ambiente brasileiro usando o compose adaptado:
+Suba o ambiente brasileiro:
 
 ```bash
 docker compose -f docker-compose.br.yml up -d
 ```
 
-Acesse no navegador:
+Acesse o painel:
 
 ```text
 http://localhost:8082
 ```
 
-Caso esteja acessando de outro computador na rede, use o IP do servidor:
+Em outro dispositivo na rede local:
 
 ```text
 http://IP_DO_SERVIDOR:8082
+```
+
+Logs via Dozzle:
+
+```text
+http://localhost:9998
 ```
 
 ---
 
 ## Docker Compose brasileiro
 
-Este projeto pode incluir um arquivo específico para o ambiente brasileiro:
+O arquivo principal para esta adaptação é:
 
 ```text
 docker-compose.br.yml
 ```
 
-Esse compose usa portas ajustadas para evitar conflitos comuns em servidores que já possuem outros containers em execução.
-
-Portas padrão sugeridas:
+Portas padrão:
 
 ```text
 8082 - Painel principal do N.O.M.A.D. Brasil
 9998 - Visualizador de logs Dozzle
 ```
 
-Para subir:
+Comandos úteis:
 
 ```bash
 docker compose -f docker-compose.br.yml up -d
-```
-
-Para parar:
-
-```bash
+docker compose -f docker-compose.br.yml logs -f
 docker compose -f docker-compose.br.yml down
 ```
 
-Para ver logs:
+---
+
+## Documentação
+
+A documentação brasileira está em:
+
+```text
+docs/
+```
+
+Guias principais:
+
+- [Primeiros passos](docs/primeiros-passos.md)
+- [Guia do usuário brasileiro](docs/guia-usuario-brasil.md)
+- [FAQ Brasil](docs/faq-brasil.md)
+- [Troubleshooting Brasil](docs/troubleshooting-brasil.md)
+- [Como contribuir](docs/contribuindo-brasil.md)
+- [Catálogos brasileiros](docs/catalogos-brasil.md)
+- [Atualização de metadados Kiwix](docs/atualizacao-metadados-kiwix.md)
+- [Geração de mapas PMTiles do Brasil](docs/geracao-mapas-pmtiles-brasil.md)
+- [Atualização do catálogo de mapas](docs/atualizacao-catalogo-mapas-br.md)
+
+---
+
+## Catálogos brasileiros
+
+Os catálogos brasileiros ficam em:
+
+```text
+collections/br/
+```
+
+Arquivos principais:
+
+```text
+collections/br/wikipedia-br.json
+collections/br/kiwix-categories-br.json
+collections/br/maps-br.json
+collections/br/catalog-index.json
+```
+
+Esses arquivos organizam as opções brasileiras de:
+
+- Wikipédia em português;
+- conteúdos Kiwix em português;
+- mapas PMTiles do Brasil;
+- categorias de conhecimento prioritárias para usuários brasileiros.
+
+---
+
+## Validação dos catálogos
+
+Execute localmente:
 
 ```bash
-docker compose -f docker-compose.br.yml logs -f
+python scripts/validate-br-catalogs.py
+```
+
+No Windows:
+
+```cmd
+python scriptsalidate-br-catalogs.py
+```
+
+O workflow correspondente no GitHub Actions é:
+
+```text
+Validate Brazilian Catalogs
 ```
 
 ---
 
-## Acessos padrão
+## Atualização dos metadados Kiwix
 
-Após subir o ambiente:
+Para buscar automaticamente arquivos ZIM em português:
 
-```text
-Painel principal: http://localhost:8082
-Logs Dozzle:      http://localhost:9998
+```bash
+python scripts/update-br-kiwix-metadata.py --dry-run --report docs/relatorio-kiwix-br.md
 ```
 
-Em outro dispositivo na mesma rede:
+Para aplicar alterações:
 
-```text
-Painel principal: http://IP_DO_SERVIDOR:8082
-Logs Dozzle:      http://IP_DO_SERVIDOR:9998
+```bash
+python scripts/update-br-kiwix-metadata.py --apply --report docs/relatorio-kiwix-br.md
 ```
 
----
-
-## Conteúdos recomendados para o Brasil
-
-### Kiwix / ZIM
-
-Conteúdos recomendados:
+Também existe um workflow manual:
 
 ```text
-Wikipédia em português
-Wiktionary em português
-Wikivoyage em português
-Livros em português
-Materiais educacionais em português
-Documentações técnicas
-Guias de primeiros socorros
+Update Brazilian Kiwix Metadata
 ```
-
-Tipos comuns de arquivos ZIM:
-
-```text
-mini  - versão reduzida
-nopic - versão sem imagens
-maxi  - versão mais completa
-all   - conteúdo amplo
-```
-
-Estratégia sugerida:
-
-- Para pouco espaço em disco, começar por versões `mini` ou `nopic`;
-- Para servidores com bastante armazenamento, usar versões completas;
-- Manter conteúdos essenciais em português como prioridade;
-- Adicionar documentos próprios em PDF, Markdown ou texto quando necessário.
 
 ---
 
 ## Mapas do Brasil
 
-O projeto pretende trabalhar com mapas offline no formato:
+A estrutura de mapas fica em:
 
 ```text
-.pmtiles
+maps/br/
 ```
 
-Esses arquivos podem ser usados para navegação offline dentro do ambiente N.O.M.A.D.
-
-Fonte preferencial dos dados:
-
-```text
-OpenStreetMap
-```
-
-Lista inicial desejada:
+Mapas planejados:
 
 ```text
 Brasil
@@ -351,64 +225,37 @@ Minas Gerais
 Espírito Santo
 ```
 
-Objetivo futuro:
+Gerar mapa de teste:
 
-- Gerar arquivos `.pmtiles` brasileiros;
-- Publicar os arquivos em Releases do GitHub;
-- Documentar importação no N.O.M.A.D.;
-- Criar catálogo brasileiro de mapas.
-
----
-
-## IA local em português
-
-Prompt recomendado para uso em português:
-
-```text
-Você é um assistente local offline para usuários brasileiros.
-Responda sempre em português brasileiro.
-Explique termos técnicos de forma simples.
-Quando citar comandos, mantenha os comandos no idioma original.
-Quando não souber uma resposta, diga claramente que não sabe.
-Se usar documentos da base local, informe que a resposta foi baseada no conteúdo disponível localmente.
+```bash
+./scripts/generate-br-pmtiles.sh https://build.protomaps.com/AAAAmmdd.pmtiles rio-de-janeiro
 ```
 
-Uso recomendado:
+No PowerShell:
 
-- Estudos;
-- Infraestrutura;
-- Linux;
-- Docker;
-- Redes;
-- Programação;
-- Resumo de documentos;
-- Apoio educacional;
-- Consulta a base local.
+```powershell
+.\scripts\generate-br-pmtiles.ps1 -SourcePmtiles "https://build.protomaps.com/AAAAmmdd.pmtiles" -Region "rio-de-janeiro"
+```
+
+Atualizar catálogo de mapas depois de gerar os arquivos:
+
+```bash
+python scripts/update-br-maps-catalog.py --apply --release-tag maps-br-v1
+```
+
+> Não faça commit de arquivos `.pmtiles`. Publique arquivos grandes em GitHub Releases ou outro storage.
 
 ---
 
-## Estrutura do projeto
-
-Estrutura inicial planejada:
+## Estrutura brasileira adicionada
 
 ```text
-project-nomad-br/
-├── admin/
-├── collections/
-├── install/
-├── docs/
-│   ├── instalacao-brasil.md
-│   ├── conteudos-brasil.md
-│   ├── mapas-brasil.md
-│   └── ia-portugues.md
-├── scripts/
-│   ├── start-br.ps1
-│   ├── stop-br.ps1
-│   └── update-br.ps1
-├── docker-compose.br.yml
-├── README.md
-├── LICENSE
-└── FAQ.md
+collections/br/
+docs/
+scripts/
+maps/br/
+.github/workflows/
+docker-compose.br.yml
 ```
 
 ---
@@ -420,42 +267,41 @@ project-nomad-br/
 - [x] Criar repositório brasileiro;
 - [x] Importar código base;
 - [x] Criar README brasileiro;
-- [ ] Criar Docker Compose brasileiro;
-- [ ] Criar documentação de instalação em pt-BR;
-- [ ] Criar documentação de conteúdos brasileiros;
-- [ ] Criar documentação de mapas do Brasil;
-- [ ] Criar documentação de IA em português.
+- [x] Criar Docker Compose brasileiro;
+- [x] Criar documentação brasileira inicial;
+- [x] Criar catálogos brasileiros iniciais;
+- [x] Criar validador dos catálogos brasileiros.
 
-### Fase 2 — Conteúdo brasileiro
+### Fase 2 — Conteúdo em português
 
-- [ ] Documentar importação da Wikipédia em português;
-- [ ] Documentar importação de arquivos ZIM;
-- [ ] Documentar integração com Kolibri em português;
-- [ ] Documentar modelos de IA recomendados para português;
-- [ ] Criar lista de conteúdos brasileiros recomendados.
+- [x] Criar script de atualização de metadados Kiwix;
+- [x] Criar workflow de atualização Kiwix;
+- [ ] Validar arquivos reais da Wikipédia em português;
+- [ ] Validar Wiktionary e Wikivoyage em português;
+- [ ] Criar catálogo brasileiro pronto para uso no painel.
 
 ### Fase 3 — Mapas do Brasil
 
-- [ ] Gerar ou obter `brasil.pmtiles`;
-- [ ] Gerar mapas regionais;
-- [ ] Testar importação no N.O.M.A.D.;
-- [ ] Publicar mapas em releases do GitHub;
-- [ ] Documentar uso offline dos mapas.
+- [x] Criar estrutura de mapas PMTiles;
+- [x] Criar script de geração de mapas;
+- [x] Criar script de atualização do catálogo de mapas;
+- [ ] Gerar primeiro mapa de teste;
+- [ ] Publicar mapa em GitHub Releases;
+- [ ] Atualizar `collections/br/maps-br.json` com URLs reais.
 
-### Fase 4 — Tradução da interface
+### Fase 4 — Experiência brasileira completa
 
-- [ ] Mapear textos da interface original;
-- [ ] Implementar estrutura de internacionalização;
-- [ ] Criar tradução `pt-BR`;
-- [ ] Adicionar seletor de idioma;
-- [ ] Gerar imagem Docker brasileira;
-- [ ] Publicar versão inicial traduzida.
+- [ ] Melhorar documentação de usuário final;
+- [ ] Criar instalador simplificado;
+- [ ] Criar imagem Docker brasileira;
+- [ ] Iniciar tradução da interface para pt-BR;
+- [ ] Adicionar seletor de idioma futuramente.
 
 ---
 
 ## Requisitos recomendados
 
-### Uso básico
+Uso básico:
 
 ```text
 CPU: 4 núcleos
@@ -465,16 +311,16 @@ Docker instalado
 Docker Compose instalado
 ```
 
-### Uso com IA local
+Uso com IA local:
 
 ```text
 CPU: 8 núcleos ou mais
 RAM: 16 GB ou mais
 Disco: 250 GB ou mais
-GPU: recomendada, mas não obrigatória
+GPU: recomendada para modelos maiores
 ```
 
-### Biblioteca grande e mapas offline
+Biblioteca grande e mapas:
 
 ```text
 Disco: 500 GB ou mais
@@ -485,29 +331,28 @@ SSD recomendado
 
 ## Segurança
 
-Este projeto utiliza containers Docker e alguns serviços podem precisar de acesso ao Docker socket:
+Alguns containers usam acesso ao Docker socket:
 
 ```text
 /var/run/docker.sock
 ```
 
-Esse acesso é poderoso e deve ser usado com cuidado.
+Esse acesso é sensível e deve ser usado com cuidado.
 
 Recomendações:
 
-- Não exponha o painel diretamente à internet;
-- Use apenas em rede confiável;
-- Prefira acesso via LAN ou VPN;
-- Proteja o servidor com firewall;
-- Faça backup periódico do diretório de dados;
-- Use senhas fortes;
-- Evite portas abertas desnecessárias.
+- não exponha o painel diretamente na internet;
+- use apenas em rede local ou VPN;
+- proteja o host com firewall;
+- faça backup periódico;
+- use senhas fortes;
+- revise arquivos antes de publicar.
 
 ---
 
 ## Backup
 
-Diretório sugerido para dados persistentes:
+Diretório sugerido:
 
 ```text
 /opt/project-nomad-br
@@ -521,8 +366,6 @@ Itens importantes:
 /opt/project-nomad-br/redis
 ```
 
-Recomenda-se fazer backup regular desses diretórios.
-
 ---
 
 ## Como contribuir
@@ -531,15 +374,20 @@ Contribuições são bem-vindas.
 
 Você pode ajudar com:
 
-- Tradução da interface;
-- Documentação em português;
-- Testes no Brasil;
-- Mapas regionais;
-- Lista de conteúdos brasileiros;
-- Scripts de instalação;
-- Correções;
-- Sugestões de modelos de IA;
-- Guias para usuários iniciantes.
+- documentação em português;
+- testes no Brasil;
+- lista de conteúdos Kiwix em português;
+- mapas PMTiles do Brasil;
+- scripts;
+- workflows;
+- tradução futura da interface;
+- tutoriais para usuários iniciantes.
+
+Leia:
+
+```text
+docs/contribuindo-brasil.md
+```
 
 ---
 
@@ -575,7 +423,7 @@ O objetivo é criar uma experiência mais acessível para usuários brasileiros,
 
 Este projeto mantém a licença Apache-2.0 do projeto original.
 
-Consulte o arquivo:
+Consulte:
 
 ```text
 LICENSE
@@ -591,13 +439,3 @@ Mantido por:
 Leonardo Azevedo
 GitHub: https://github.com/Azevedo1996
 ```
-
----
-
-## Nome do projeto
-
-```text
-Project N.O.M.A.D. Brasil
-```
-
-Servidor offline de conhecimento, mapas, educação e IA local para usuários brasileiros.
